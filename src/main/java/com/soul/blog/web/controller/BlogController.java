@@ -21,27 +21,27 @@ public class BlogController {
         return "Welcome to my Blog, enjoy !";
     }
 
-    @GetMapping("/Posts")
+    @GetMapping("/posts")
     public List<Post> allPosts() {
         return postService.readAll();
     }
 
-    @GetMapping("/Posts/{id}")
+    @GetMapping("/posts/{id}")
     public Post onePost(@PathVariable int id) throws NoSuchPostException {
         return postService.read(id);
     }
 
-    @PostMapping("/Posts")
+    @PostMapping("/posts")
     public Post newPost(@Valid @RequestBody Post post) {
         return postService.create(post);
     }
 
-    @PutMapping("/Posts")
+    @PutMapping("/posts")
     public Post updatePost(@Valid @RequestBody Post post) {
         return postService.update(post);
     }
 
-    @DeleteMapping("/Posts")
+    @DeleteMapping("/posts")
     public void deletePost(@RequestParam int id) {
         postService.delete(id);
     }
