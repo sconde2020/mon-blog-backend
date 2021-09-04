@@ -48,4 +48,8 @@ public class PostService {
             throw new NoSuchPostException("The post with the id " + id + " does not exist");
         }
     }
+
+    public List<Post> find(String keyWord) {
+        return postRepository.findByTitleAndContent(keyWord);
+    }
 }

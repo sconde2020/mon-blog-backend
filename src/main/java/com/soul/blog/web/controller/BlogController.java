@@ -46,4 +46,11 @@ public class BlogController {
     public void deletePost(@RequestParam int id) {
         postService.delete(id);
     }
+
+    @GetMapping("/find")
+    public List<Post> findPosts(@RequestParam String keyWord) {
+        System.out.println("Key Word: " + keyWord);
+        return postService.find(keyWord);
+    }
+
 }
