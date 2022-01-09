@@ -1,8 +1,8 @@
 package com.soul.blog.model;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -12,8 +12,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
-@Setter(AccessLevel.PUBLIC)
-@Getter(AccessLevel.PUBLIC)
+@Setter
+@Getter
+@ToString
 @Entity
 @Table(name = "posts")
 @EntityListeners(AuditingEntityListener.class)
@@ -23,22 +24,21 @@ public class Post {
     private int id;
 
     @NotBlank
-    @Length(min = 5, max = 25, message = "length not between 5 and 25")
+    @Length(min = 5, max = 25, message = "title must have between 5 and 25 characters")
     private String title;
 
     @NotBlank
-    @Length(min = 5, max = 200, message = "length not between 5 and 200")
+    @Length(min = 5, max = 200, message = "content must have between 5 and 25 characters")
     private String content;
 
     @Column(name = "love_it")
     private int loveIt;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
     @CreatedDate
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-
-    @Column(name = "updated_at", nullable = false)
     @LastModifiedDate
+    @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 }
